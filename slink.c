@@ -108,13 +108,15 @@ void Del_Akhir (address * p, infotype * X){
 			while(!isEmpty(next(temp))){
 				temp2=temp;
 				temp=next(temp);
-				printf("LOOP");	
 			}
-			
+			if(*p == temp){
+				Del_Awal(p,X);
+			}
+			else {
 				next(temp2) = Nil;
 				*X = info(temp);
 				DeAlokasi(&temp); 	
-				
+			}	
 		}
 	}
 

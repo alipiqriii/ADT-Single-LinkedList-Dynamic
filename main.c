@@ -12,87 +12,85 @@
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 main(){
-	infotype X=0;
-	int Jum_Elemen;
+	infotype X;
+	infotype data,value;
+	int Hasil,c;
 	boolean valid;
-	address insert;
 	address Head;
 	address P, Q;
 	Head = Nil;
  	
- 	//Membuat 4 Node
-	Create_Node(&P);
-	Isi_Node(&P,100);
-	Ins_Awal(&Head,P);
-	Del_Akhir(&Head,&X);
-	Tampil_List(Head);
-	
-	Create_Node(&Q);
-	Isi_Node(&Q,200);
-	Ins_Awal(&Head,Q);
-	
-	Create_Node(&P);
-	Isi_Node(&P,300);
-	Ins_Awal(&Head,P);
-	
-	Create_Node(&Q);
-	Isi_Node(&Q,300);
-	Ins_Awal(&Head,Q);
-	
-	printf("\nTampil Semua Node & Insert Node di Awal :\n");
-	Tampil_List(Head);
-	
-	printf("\nInsert Node Diakhir:\n");
-	//Membuat Node di akhir
-	Create_Node(&Q);
-	Isi_Node(&Q,800);   
-	Ins_Akhir(&Head,Q);
-	Tampil_List(Head);
-	
-	//Membuat Node Diantara 
-	Create_Node(&P);
-	Isi_Node(&P,1000);
-	
-	//Mencari info dari suatu node
-	Q=Search(Head,100);
-	//Menambahkan node diantara dua node	
-	InsertAfter(&Q,P);
-	printf("\nInsert Node Diantara :\n");
-	Tampil_List(Head);
-	
-	//Mennghapus Node Diantara
-	printf("\nHapus Node Diantara :\n");
-	Q=Search(Head,100);
-	Del_After(&Q,&X);
-	Tampil_List(Head);
-	
-	printf("\nJumlah Elemen Node :\n");
-	//Menghitung dan menampilkan jumlah node
-	Jum_Elemen = NbElmt(Head);
-	printf("Elemen %d",Jum_Elemen);
-	
-	printf("\n\nReverse Node :\n");
-	//Membalikkan Linked List (Head jadi terakhir)
-	Head = BalikList(Head);
-	Tampil_List(Head);
-	
-	infotype Rata2;
-	//Menghitung Rata-Rata Linked List
-	Rata2 = Rerata(Head);
-	
-	printf("\nRata2 : %d",Rata2);
-	
-	printf("\n\nHapus Node Akhir :\n");
-	//Menghapus node di akhir elemen
-	Del_Akhir(&Head,&X);
-	Tampil_List(Head);
-	
-	printf("\nHapus Node Awal :\n");
-	//Menghapus node di akhir elemen
-	Del_Awal(&Head,&X);
-	Tampil_List(Head);
-	
-	int min=0;
-	min = Min(Head);
-	printf("\nMinimal : %d",min);	
+ 	while(1){
+		system("cls");
+		printf("1. Insert Awal\n");
+		printf("2. Insert Akhir\n");
+		printf("3. Insert After\n");
+		printf("4. Delete Awal\n");
+		printf("5. Delete Akhir\n");
+		printf("6. Delete After\n");
+		printf("7. Rerata\n");
+		printf("8. Min\n");
+		printf("9. Jumlah Elemen\n");
+		printf("10. Balik List\n");
+		//printf("11. Sort\n");
+		printf("11. Tampil\n");
+		printf("Pilihan :");scanf("%d",&c);
+		
+		switch(c){
+			case 1 :
+				printf("Value : ");scanf("%d",&value);
+				Create_Node(&P);
+				Isi_Node(&P,value);
+				Ins_Awal(&Head,P);
+			break;
+			case 2 : 
+				printf("Value : ");scanf("%d",&value);
+				Create_Node(&P);
+				Isi_Node(&P,value);
+				Ins_Akhir(&Head,P);
+			break;
+			case 3 :
+				printf("Data Yang Dicari : ");scanf("%d",&data);
+				printf("Value : ");scanf("%d",&value);
+				Create_Node(&P);
+				Isi_Node(&P,value);
+				Q=Search(Head,data);	
+				InsertAfter(&Q,P);
+			break;
+			case 4 :
+				Del_Awal(&Head,&X);
+				printf("Node Info %d Terhapus\n",X);
+			break;
+			case 5 :
+				Del_Akhir(&Head,&X);
+				printf("Node Info %d Terhapus\n",X);
+			break;
+			case 6 :
+				printf("Data Yang Dicari : ");scanf("%d",&data);
+				Q=Search(Head,data);
+				Del_After(&Q,&X);
+				printf("Node Info %d Terhapus\n",X);
+			break;
+			case 7 :
+				Hasil = Rerata(Head);
+				printf("Rata2 : %d\n",Hasil);
+			break;
+			case 8 :
+				Hasil = Min(Head);
+				printf("Minimal : %d\n",Hasil);
+			break;
+			case 9 :	
+				Hasil = NbElmt(Head);
+				printf("Elemen %d\n",Hasil);
+			break;
+			case 10 :
+				Head = BalikList(Head);
+			break;
+			case 11 :
+				Tampil_List(Head);
+			break;
+			default : printf("Salah"); break;
+		}
+		system("pause");
+	}
 }
